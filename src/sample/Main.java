@@ -16,10 +16,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         Pane ruutu = new Pane();
-        ruutu.setPrefSize(600, 400);
-        Boris bobo = new Boris(100, 100);
+        ruutu.setPrefSize(PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
+        Boris bobo = new Boris();
         Esteet esteet = new Esteet();
-        //ruutu.getChildren().add(este.getHahmo());
+        ruutu.getChildren().add(esteet.getUusinHahmo());
         ruutu.getChildren().add(bobo.getHahmo());
 
         Map<KeyCode, Boolean> painetutNapit = new HashMap<>();
@@ -39,7 +39,7 @@ public class Main extends Application {
                     bobo.hyppaa();
                 }
                 bobo.paivita();
-                esteet.paivitaKaikki();
+                esteet.paivita(ruutu);
             }
         }.start();
 
