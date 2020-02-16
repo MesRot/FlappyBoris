@@ -5,8 +5,8 @@ public class PelinAsetukset {
     public static final int RuudunKorkeus = 400;
     public static double EsteenNopeus = -2.0; //TODO: Esteen nopeus kasvaa pelin edetessä
     public static final double PainoVoima = 0.05;
-    public static final double HyppyVoima = -3;
-    public static final int MaanKorkeus = RuudunKorkeus - (RuudunKorkeus / 4);
+    public static final double HyppyVoima = -4;
+    public static final int MaanKorkeus = RuudunKorkeus - (RuudunKorkeus / 3);
     public static final double MaxPutoamisNopeus = 2.0;
 
 

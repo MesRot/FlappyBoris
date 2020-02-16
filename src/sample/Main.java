@@ -8,20 +8,22 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import java.util.HashMap;
 import java.util.Map;
-
+////images from https://jesse-m.itch.io/skeleton-pack, https://jesse-m.itch.io/jungle-pack, https://goglilol.itch.io/cute-knight
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        //Image bacg
+        Image bacg
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         Pane ruutu = new Pane();
         ruutu.setPrefSize(PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
         Boris bobo = new Boris();
         Esteet esteet = new Esteet();
+        ruutu.getChildren().add(new Rectangle(0, PelinAsetukset.MaanKorkeus+PelinAsetukset.BorisKorkeus, PelinAsetukset.RuudunLeveys, PelinAsetukset.MaanKorkeus));
         ruutu.getChildren().add(esteet.getUusinHahmo());
         ruutu.getChildren().add(bobo.getHahmo());
 

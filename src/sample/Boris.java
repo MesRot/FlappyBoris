@@ -39,9 +39,6 @@ public class Boris extends Esine{
         if(this.liike >= PelinAsetukset.MaxPutoamisNopeus){  //max alaspäin putoamisvauhti
             this.liike = PelinAsetukset.MaxPutoamisNopeus;
         }
-        if(this.liike <= -3.0){
-            this.liike = -3.0;
-        }
         if(super.getHahmo().getTranslateY() >= PelinAsetukset.MaanKorkeus){
             super.getHahmo().setTranslateY(PelinAsetukset.MaanKorkeus);
         }

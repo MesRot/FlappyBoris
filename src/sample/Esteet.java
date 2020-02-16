@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.scene.ImageCursor;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
@@ -8,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Esteet {
+    Image skeletonWalk = new Image("file:images/skeletonWalk.gif");
+    Image snakeWalk = new Image("file:images/snakeWalk.gif");
+    Image batWalk = new Image("file:images/batWalk.gif");
     private ArrayList<Este> esteet = new ArrayList<>();
 
     public Esteet(){
@@ -29,17 +35,17 @@ public class Esteet {
     }
     public void lisaaUusi(){
         Random rng = new Random();
-        KORKEUDET korkeus = KORKEUDET.values()[rng.nextInt(KORKEUDET.values().length)];  //arpoo ENUM korkeuksista yhden
-        switch (korkeus){
-            case MATALA:
-                esteet.add(new Este(100));
+        VIHOLLISET vihollinen = VIHOLLISET.values()[rng.nextInt(VIHOLLISET.values().length)];  //arpoo ENUM korkeuksista yhden
+        switch (vihollinen){
+            case LUURANKO:
+                esteet.add(new Este(skeletonWalk, PelinAsetukset.MaanKorkeus-20));
                 break;
-            case KESKELLA:
-                esteet.add(new Este(200));
+            case KAARME:
+                esteet.add(new Este(snakeWalk, PelinAsetukset.MaanKorkeus-20));
                 break;
-            case KORKEA:
-                esteet.add(new Este(300));
-                break;
+            case LEPAKKO:
+                esteet.add(new Este(batWalk, PelinAsetukset.MaanKorkeus- 100));
+             //   break;
         }
 
     }
