@@ -24,12 +24,11 @@ public class Esteet {
         if(ekaUlosNaytosta()){
             poistaEka();
             lisaaUusi();
-            ruutu.getChildren().add(getUusinHahmo());
+            ruutu.getChildren().add(this.getEkaEste().getHahmo());
         }
     }
 
     public void poistaEka(){
-
         esteet.remove(0);
     }
     public void lisaaUusi(){
@@ -55,7 +54,7 @@ public class Esteet {
             e.liiku();
         }
     }
-    public Shape getUusinHahmo(){
-        return esteet.get(esteet.size() - 1).getHahmo();
+    public Este getEkaEste(){
+        return esteet.get(0);
     }
 }

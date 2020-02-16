@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import static sample.PelinAsetukset.MaanKorkeus;
 
@@ -13,6 +14,7 @@ public class Boris extends Esine{
     double painovoima = PelinAsetukset.PainoVoima;
     double hyppyVoima = PelinAsetukset.HyppyVoima;
     boolean ilmassa = false;
+    boolean tormannyt = false;
     Image juoksuKuva = new Image("file:images/running.gif");
     Image hyppyKuva = new Image("file:images/jumping.png");
     Image tippumisKuva = new Image("file:images/landing.png");
@@ -52,6 +54,25 @@ public class Boris extends Esine{
         else {
             this.ilmassa = true;
         }
-
+    }
+    public void tarkistaTormays(Este esine){
+        Shape bobo = super.getHahmo();
+        Boolean esineenPaalla = false;
+        Boolean esineenAlla = false;
+        if((super.getX() + PelinAsetukset.BorisLeveys) > esine.getX() && super.getX() < esine.getX() && !((super.getY() + PelinAsetukset.BorisKorkeus) < esine.getY())){
+            if(true){}
+            //this.tormannyt = true;
+            //System.out.println("Tormasi");
+        }
+        System.out.println("Boris y: " + super.getY() + "    este y: " + esine.getY());
+        if(!(esine.getY() > (super.getY() + PelinAsetukset.BorisKorkeus))){ ///boris on esineen paalla
+            esineenPaalla = true;
+        }
+        if((esine.getY() + PelinAsetukset.EsteKorkeus) > super.getY()){
+            esineenAlla = true;
+        }
+        if(esineenAlla){
+            System.out.println("Alla");
+        }
     }
 }

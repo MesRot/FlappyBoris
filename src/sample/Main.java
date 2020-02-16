@@ -28,8 +28,13 @@ public class Main extends Application {
         Boris bobo = new Boris();
         Esteet esteet = new Esteet();
         teeTausta(ruutu);
+
+        Rectangle testiBobo = new Rectangle(bobo.getX(), bobo.getY(), 10, 10);
+        Rectangle testiEsine = new Rectangle(200, esteet.getEkaEste().getY(), 10, 10);
         ruutu.getChildren().add(new Rectangle(0, PelinAsetukset.MaanKorkeus+PelinAsetukset.BorisKorkeus, PelinAsetukset.RuudunLeveys, PelinAsetukset.MaanKorkeus));
-        ruutu.getChildren().addAll(esteet.getUusinHahmo(), bobo.getHahmo());
+        ruutu.getChildren().addAll(esteet.getEkaEste().getHahmo(), bobo.getHahmo());
+
+        ruutu.getChildren().addAll(testiBobo, testiEsine);
 
         Map<KeyCode, Boolean> painetutNapit = new HashMap<>();
 
@@ -54,8 +59,13 @@ public class Main extends Application {
                 }
                 bobo.paivita();
                 esteet.paivita(ruutu);
+                bobo.tarkistaTormays(esteet.getEkaEste());
+                if(bobo.tormannyt){
+                    this.stop();
+                }
             }
         }.start();
+
 
         Scene scene = new Scene(ruutu);
         stage.setScene(scene);
