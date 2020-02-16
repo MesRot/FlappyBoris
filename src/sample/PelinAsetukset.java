@@ -15,5 +15,6 @@ public class PelinAsetukset {
     }
 
     //Älä koske näihin
-    public static final int HahmonKorkeus = 20;
+    public static final int BorisKorkeus = 50;
+    public static final int BorisLeveys = 50;
 }

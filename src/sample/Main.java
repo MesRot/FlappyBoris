@@ -4,6 +4,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
@@ -15,6 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+        //Image bacg
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         Pane ruutu = new Pane();
         ruutu.setPrefSize(PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
         Boris bobo = new Boris();

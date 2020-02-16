@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -38,6 +40,9 @@ public class Esine {
     public double getY(){
         //shortcut for super.getHahmo.getTranslateY()
         return this.hahmo.getTranslateY();
+    }
+    public void asetaKuva(Image kuva){
+        this.hahmo.setFill(new ImagePattern(kuva));
     }
     public void setLiike(double luku){
         this.liike = luku;
