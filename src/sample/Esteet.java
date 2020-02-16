@@ -45,7 +45,6 @@ public class Esteet {
                 break;
             case LEPAKKO:
                 esteet.add(new Este(batWalk, PelinAsetukset.MaanKorkeus- 100));
-             //   break;
         }
 
     }
