@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,12 +23,14 @@ public class Esteet {
     }
 
     public void poistaEka(){
+        PelinAsetukset.kasvataEsteNopeutta();
+        System.out.println(PelinAsetukset.EsteenNopeus);
         esteet.remove(0);
     }
     public void lisaaUusi(){
         Random rng = new Random();
         KORKEUDET korkeus = KORKEUDET.values()[rng.nextInt(KORKEUDET.values().length)];  //arpoo ENUM korkeuksista yhden
-        switch (korkeus){ //TODO: Pystyy arpomaan myös erimuotoisia esteitä
+        switch (korkeus){
             case MATALA:
                 esteet.add(new Este(100));
                 break;
@@ -48,7 +51,7 @@ public class Esteet {
             e.liiku();
         }
     }
-    public Polygon getUusinHahmo(){
+    public Shape getUusinHahmo(){
         return esteet.get(esteet.size() - 1).getHahmo();
     }
 }

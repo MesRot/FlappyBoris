@@ -2,18 +2,19 @@ package sample;
 
 import javafx.geometry.Point2D;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Shape;
 
 public class Esine {
-    Polygon hahmo;
+    Shape hahmo;
     double liike;
-    public Esine(Polygon monikulmio, int x, int y) {
+    public Esine(Shape monikulmio, int x, int y) {
         this.hahmo = monikulmio;
         this.hahmo.setTranslateX(x);
         this.hahmo.setTranslateY(y);
         this.liike = 0.0;
     }
 
-    public Polygon getHahmo(){
+    public Shape getHahmo(){
         return hahmo;
     }
     public void paivita(){
