@@ -8,6 +8,7 @@ public class PelinAsetukset {
     public static final double HyppyVoima = -4;
     public static final int MaanKorkeus = RuudunKorkeus - (RuudunKorkeus / 3);
     public static final double MaxPutoamisNopeus = 2.0;
+    public static final int HeittoHitDetecionissa = 30;
 
 
     public static void kasvataEsteNopeutta(){ //TODO: Esteen nopeus kasvaa liian nopeasti, sido se esim framecounttiin

@@ -56,23 +56,9 @@ public class Boris extends Esine{
         }
     }
     public void tarkistaTormays(Este esine){
-        Shape bobo = super.getHahmo();
-        Boolean esineenPaalla = false;
-        Boolean esineenAlla = false;
-        if((super.getX() + PelinAsetukset.BorisLeveys) > esine.getX() && super.getX() < esine.getX() && !((super.getY() + PelinAsetukset.BorisKorkeus) < esine.getY())){
-            if(true){}
-            //this.tormannyt = true;
-            //System.out.println("Tormasi");
-        }
-        System.out.println("Boris y: " + super.getY() + "    este y: " + esine.getY());
-        if(!(esine.getY() > (super.getY() + PelinAsetukset.BorisKorkeus))){ ///boris on esineen paalla
-            esineenPaalla = true;
-        }
-        if((esine.getY() + PelinAsetukset.EsteKorkeus) > super.getY()){
-            esineenAlla = true;
-        }
-        if(esineenAlla){
-            System.out.println("Alla");
+        Shape tormaysAlue = Shape.intersect(super.getHahmo(), esine.getHahmo());
+        if(tormaysAlue.getBoundsInLocal().getWidth() > PelinAsetukset.HeittoHitDetecionissa){
+            this.tormannyt = true;
         }
     }
 }

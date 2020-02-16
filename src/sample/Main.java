@@ -7,20 +7,28 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 ////images from https://jesse-m.itch.io/skeleton-pack, https://jesse-m.itch.io/jungle-pack, https://goglilol.itch.io/cute-knight
+//music from https://www.playonloop.com/2018-music-loops/star-way/#free-download, https://nicolemariet.itch.io/spy-8-bit-16-bit?download
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
+        Media sound = new Media(new File("music/Spy.mp3").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         Pane ruutu = new Pane();
@@ -29,12 +37,9 @@ public class Main extends Application {
         Esteet esteet = new Esteet();
         teeTausta(ruutu);
 
-        Rectangle testiBobo = new Rectangle(bobo.getX(), bobo.getY(), 10, 10);
-        Rectangle testiEsine = new Rectangle(200, esteet.getEkaEste().getY(), 10, 10);
         ruutu.getChildren().add(new Rectangle(0, PelinAsetukset.MaanKorkeus+PelinAsetukset.BorisKorkeus, PelinAsetukset.RuudunLeveys, PelinAsetukset.MaanKorkeus));
         ruutu.getChildren().addAll(esteet.getEkaEste().getHahmo(), bobo.getHahmo());
 
-        ruutu.getChildren().addAll(testiBobo, testiEsine);
 
         Map<KeyCode, Boolean> painetutNapit = new HashMap<>();
 
@@ -50,6 +55,12 @@ public class Main extends Application {
             int score = 0;
             @Override
             public void handle(long nykyhetki) {//Todo: korjaa score teksti animaatio
+                mediaPlayer.setOnEndOfMedia(new Runnable() {
+                    @Override
+                    public void run() {
+                        mediaPlayer.seek(Duration.ZERO);
+                    }
+                });
                 if(nykyhetki % 100 == 0){
                     score++;
                     PelinAsetukset.kasvataEsteNopeutta();
@@ -62,6 +73,8 @@ public class Main extends Application {
                 bobo.tarkistaTormays(esteet.getEkaEste());
                 if(bobo.tormannyt){
                     this.stop();
+
+                    //TODO: lisaa idle animaatiot kun pelaaja tormaa ja lisaa game over naytto
                 }
             }
         }.start();
