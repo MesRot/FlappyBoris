@@ -19,12 +19,7 @@ public class Esine {
     public Shape getHahmo(){
         return hahmo;
     }
-    public void paivita(){
 
-    }
-    public void liiku() {
-
-    }
     public void setX(double luku){
         //shortcut for super.getHahmo.setTranslateX()
         this.hahmo.setTranslateX(luku);

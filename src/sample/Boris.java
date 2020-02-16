@@ -16,10 +16,10 @@ public class Boris extends Esine{
     Image juoksuKuva = new Image("file:images/running.gif");
     Image hyppyKuva = new Image("file:images/jumping.png");
     Image tippumisKuva = new Image("file:images/landing.png");
+
     public Boris() { //TODO: voi myös liikkua x akselilla?
         super(new Rectangle(PelinAsetukset.BorisLeveys, PelinAsetukset.BorisKorkeus), 100, PelinAsetukset.MaanKorkeus);
         super.getHahmo().setFill(new ImagePattern(juoksuKuva));
-        System.out.println(juoksuKuva.getHeight() + "    " + juoksuKuva.getWidth());
     }
 
     public void hyppaa() {

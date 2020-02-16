@@ -29,8 +29,7 @@ public class Esteet {
     }
 
     public void poistaEka(){
-        PelinAsetukset.kasvataEsteNopeutta();
-        System.out.println(PelinAsetukset.EsteenNopeus);
+
         esteet.remove(0);
     }
     public void lisaaUusi(){

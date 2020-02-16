@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Este extends Esine{
     public Este(Image image, int korkeus) {
-        super(new Rectangle(70,70), PelinAsetukset.RuudunLeveys, korkeus);
+        super(new Rectangle(PelinAsetukset.EsteLeveys,PelinAsetukset.EsteKorkeus), PelinAsetukset.RuudunLeveys, korkeus);
         super.setLiike(PelinAsetukset.EsteenNopeus);
         super.asetaKuva(image);
     }

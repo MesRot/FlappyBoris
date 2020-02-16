@@ -47,6 +47,7 @@ public class Main extends Application {
             public void handle(long nykyhetki) {//Todo: korjaa score teksti animaatio
                 if(nykyhetki % 100 == 0){
                     score++;
+                    PelinAsetukset.kasvataEsteNopeutta();
                 }
                 if(painetutNapit.getOrDefault(KeyCode.SPACE, false)) {
                     bobo.hyppaa();
