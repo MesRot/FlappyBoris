@@ -44,21 +44,15 @@ public class Main extends Application {
         new AnimationTimer() {
             int score = 0;
             @Override
-            public void handle(long nykyhetki) {
+            public void handle(long nykyhetki) {//Todo: korjaa score teksti animaatio
                 if(nykyhetki % 100 == 0){
                     score++;
                 }
-                System.out.println(score);
                 if(painetutNapit.getOrDefault(KeyCode.SPACE, false)) {
                     bobo.hyppaa();
                 }
                 bobo.paivita();
                 esteet.paivita(ruutu);
-                Text teksti = new Text(100, 100, "Current Score: " + score);
-                ruutu.getChildren().add(teksti);
-                ruutu.getChildren().remove(teksti);
-                ruutu.getChildren().add(teksti);
-
             }
         }.start();
 
