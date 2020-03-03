@@ -4,11 +4,11 @@ public class PelinAsetukset {
     public static final int RuudunLeveys = 600;
     public static final int RuudunKorkeus = 400;
     public static double EsteenNopeus = -2.0; //TODO: Esteen nopeus kasvaa pelin edetessä
-    public static final double PainoVoima = 0.07;
-    public static final double HyppyVoima = -4;
+    public static final double PainoVoima = 0.15;
+    public static final double HyppyVoima = -6;
     public static final int MaanKorkeus = RuudunKorkeus - (RuudunKorkeus / 3);
-    public static final double MaxPutoamisNopeus = 2.0;
-    public static final int HeittoHitDetecionissa = 30;
+    public static final double MaxPutoamisNopeus = 4.0;
+    public static final int HeittoHitDetecionissa = 40;
 
 
     public static void kasvataEsteNopeutta(){ //TODO: Esteen nopeus kasvaa liian nopeasti, sido se esim framecounttiin
