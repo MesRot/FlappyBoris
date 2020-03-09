@@ -78,15 +78,16 @@ public class Main extends Application {
                 if(bobo.tormannyt){
                     this.stop();
                     try {
-                        asetaPeliOhi(ruutu, pisteet, pistehallinta);
-                    } catch (SQLException e) {
-
-                    }
-                    try {
                         pistehallinta.tallenna(pisteet);
                     } catch (SQLException e) {
                         System.out.println("Pisteiden tallennus ei toiminut");
                     }
+                    try {
+                        asetaPeliOhi(ruutu, pisteet, pistehallinta);
+                    } catch (SQLException e) {
+
+                    }
+
 
                     //TODO: lisaa idle animaatiot kun pelaaja tormaa ja lisaa game over naytto
                 }
