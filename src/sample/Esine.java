@@ -5,6 +5,11 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Shape;
 
+/**
+ * Yliluokka luokille Boris ja Este
+ *
+ * Omistaa paikan, hahmon muodon ja liikkeen
+ */
 public class Esine {
     private Shape hahmo;
     double liike;
@@ -15,6 +20,10 @@ public class Esine {
         this.liike = 0.0;
     }
 
+    /**
+     * @return Shape
+     *  Palauttaa hahmon Shape olion
+     */
     public Shape getHahmo(){
         return hahmo;
     }
@@ -35,12 +44,22 @@ public class Esine {
         //shortcut for super.getHahmo.getTranslateY()
         return this.hahmo.getTranslateY();
     }
+
+    
     public double getLiike(){
         return this.liike;
     }
+     /**
+     * @param kuva
+     * Asettaa hahmon kuvaksi parametrina saadu kuvan
+     */
     public void asetaKuva(Image kuva){
         this.hahmo.setFill(new ImagePattern(kuva));
     }
+
+    /**
+     * @param luku Asettaa hahmolle parametrina saadun luvun liikkeeksi
+     */
     public void setLiike(double luku){
         this.liike = luku;
     }

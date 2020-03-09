@@ -81,16 +81,19 @@ public class Main extends Application {
                 bobo.tarkistaTormays(esteet.getEkaEste());
                 if(bobo.tormannyt){
                     this.stop();
-                    try {
-                        asetaPeliOhi(ruutu, pisteet, pistehallinta);
-                    } catch (SQLException e) {
-
-                    }
+            
                     try {
                         pistehallinta.tallenna(pisteet);
                     } catch (SQLException e) {
                         System.out.println("Pisteiden tallennus ei toiminut");
                     }
+                    try {
+                        asetaPeliOhi(ruutu, pisteet, pistehallinta);
+                    } catch (SQLException ignored) {
+
+                    }
+
+
 
                 }
             }
@@ -107,6 +110,9 @@ public class Main extends Application {
 
     }
 
+    /**Ottaa parametrina pane olion ja lisää siihen taustan
+     * @param ruutu
+     */
     public void teeTausta(Pane ruutu){
         ArrayList<Image> taustat = new ArrayList<>();
         Image background1 = new Image("file:images/plx-1.png");
@@ -126,6 +132,16 @@ public class Main extends Application {
         }
     }
 
+
+    /**Tekee peliohinäytön hahmon törmätessä esteeseen.
+     *
+     * mm. lisää tekstejä ja hakee Pisteet oliolta edelliset parhaat kolme pistettä
+     * @param ruutu
+     * @param pisteet
+     * @param pistehallinta
+     * @throws SQLException
+     */
+
     public void asetaPeliOhi(Pane ruutu, int pisteet, Pisteet pistehallinta) throws SQLException {
         Rectangle peitto = new Rectangle(0, 0, PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
         Text tamanpelinpisteet = new Text(200, 150, "Pisteet tästä pelikierroksesta: " + pisteet);
@@ -144,9 +160,12 @@ public class Main extends Application {
         }
         catch (Exception e){
 
+            System.out.println("Ei tarpeeksi pisteitä järjestelmässä");
         }
 
     }
+
+
 
     public static void main(String[] args) {
         launch(args);

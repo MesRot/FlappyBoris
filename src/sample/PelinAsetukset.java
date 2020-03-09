@@ -8,11 +8,14 @@ public class PelinAsetukset {
     public static final double HyppyVoima = -4;
     public static final int MaanKorkeus = RuudunKorkeus - (RuudunKorkeus / 3);
     public static final double MaxPutoamisNopeus = 2.0;
-    public static final int HeittoHitDetecionissa = 35;
-    public static final double EsteidenNopeudenKasvu = 0.001;
-    public static final double AlkuEsteenNopeus = -1.8;
+    public static final int HeittoHitDetecionissa = 30; //Koska hitboxit eivät ole samat kuin esteiden koko niin tällä
+                                                        //Parametrilla voidaan säätää hitdetectionin tarkkuuutta
 
-    public static void kasvataEsteNopeutta(){ //TODO: Esteen nopeus kasvaa liian nopeasti, sido se esim framecounttiin
+
+    public static final double EsteidenNopeudenKasvu = 0.001;
+
+
+    public static void kasvataEsteNopeutta(){ 
         EsteenNopeus -= EsteidenNopeudenKasvu;
     }
 
