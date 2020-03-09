@@ -59,10 +59,10 @@ public class Main extends Application {
         });
 
 
-        new AnimationTimer() { //TODO: Cappaa framerate about 30
+        new AnimationTimer() {
             int pisteet = 0;
             @Override
-            public void handle(long nykyhetki) {//TODO: korjaa score teksti animaatio
+            public void handle(long nykyhetki) {
                 mediaPlayer.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
@@ -92,8 +92,6 @@ public class Main extends Application {
                         System.out.println("Pisteiden tallennus ei toiminut");
                     }
 
-
-                    //TODO: lisaa idle animaatiot kun pelaaja tormaa ja lisaa game over naytto
                 }
             }
         }.start();
@@ -145,7 +143,7 @@ public class Main extends Application {
             }
         }
         catch (Exception e){
-            System.out.println("Ei tarpeeksi pisteitä järjestelmässä");
+
         }
 
     }

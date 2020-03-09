@@ -1,14 +1,13 @@
 package sample;
 
-import javafx.geometry.Point2D;
+
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 public class Esine {
     private Shape hahmo;
-    double liike;  //TODO: tee setter metodi liikkelle
+    double liike;
     public Esine(Shape monikulmio, int x, int y) {
         this.hahmo = monikulmio;
         this.hahmo.setTranslateX(x);
