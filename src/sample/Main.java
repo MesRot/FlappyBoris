@@ -26,7 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Media sound = new Media(new File("music/Spy.mp3").toURI().toString());
+        Media sound = new Media(new File("music/forest.wav").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
 
