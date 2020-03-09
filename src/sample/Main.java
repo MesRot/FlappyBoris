@@ -4,19 +4,24 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,16 +31,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Media sound = new Media(new File("music/Spy.mp3").toURI().toString());
+        Pisteet pistehallinta = new Pisteet();
+        Media sound = new Media(new File("music/forest.wav").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
 
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         Pane ruutu = new Pane();
         ruutu.setPrefSize(PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
+
         Boris bobo = new Boris();
         Esteet esteet = new Esteet();
         teeTausta(ruutu);
+
 
         ruutu.getChildren().add(new Rectangle(0, PelinAsetukset.MaanKorkeus+PelinAsetukset.BorisKorkeus, PelinAsetukset.RuudunLeveys, PelinAsetukset.MaanKorkeus));
         ruutu.getChildren().addAll(esteet.getEkaEste().getHahmo(), bobo.getHahmo());
@@ -51,10 +59,10 @@ public class Main extends Application {
         });
 
 
-        new AnimationTimer() {
-            int score = 0;
+        new AnimationTimer() { //TODO: Cappaa framerate about 30
+            int pisteet = 0;
             @Override
-            public void handle(long nykyhetki) {//Todo: korjaa score teksti animaatio
+            public void handle(long nykyhetki) {//TODO: korjaa score teksti animaatio
                 mediaPlayer.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
@@ -62,7 +70,7 @@ public class Main extends Application {
                     }
                 });
                 if(nykyhetki % 100 == 0){
-                    score++;
+                    pisteet++;
                     PelinAsetukset.kasvataEsteNopeutta();
                 }
                 if(painetutNapit.getOrDefault(KeyCode.SPACE, false)) {
@@ -73,6 +81,17 @@ public class Main extends Application {
                 bobo.tarkistaTormays(esteet.getEkaEste());
                 if(bobo.tormannyt){
                     this.stop();
+                    try {
+                        asetaPeliOhi(ruutu, pisteet, pistehallinta);
+                    } catch (SQLException e) {
+
+                    }
+                    try {
+                        pistehallinta.tallenna(pisteet);
+                    } catch (SQLException e) {
+                        System.out.println("Pisteiden tallennus ei toiminut");
+                    }
+
 
                     //TODO: lisaa idle animaatiot kun pelaaja tormaa ja lisaa game over naytto
                 }
@@ -107,9 +126,29 @@ public class Main extends Application {
             tausta.setFill(new ImagePattern(i));
             ruutu.getChildren().add(tausta);
         }
-
     }
 
+    public void asetaPeliOhi(Pane ruutu, int pisteet, Pisteet pistehallinta) throws SQLException {
+        Rectangle peitto = new Rectangle(0, 0, PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
+        Text tamanpelinpisteet = new Text(200, 150, "Pisteet tästä pelikierroksesta: " + pisteet);
+        Text peliohiteksti = new Text(200 , 100, "Peli ohi :(");
+        peliohiteksti.setFont(new Font(20));
+        peitto.setFill(Color.ORANGE);
+        ruutu.getChildren().addAll(peitto, peliohiteksti, tamanpelinpisteet);
+
+        try{
+            Text top3 = new Text(200, 185, "TOP 3 pisteet: ");
+            ruutu.getChildren().add(top3);
+            for(int i = 0; i < 3; i++){
+                Text piste = new Text(200, 220 + i * 50, Integer.toString(pistehallinta.getTop3().get(i)));
+                ruutu.getChildren().add(piste);
+            }
+        }
+        catch (Exception e){
+            System.out.println("Ei tarpeeksi pisteitä järjestelmässä");
+        }
+
+    }
 
     public static void main(String[] args) {
         launch(args);

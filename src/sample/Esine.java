@@ -7,8 +7,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 public class Esine {
-    Shape hahmo;
-    double liike;
+    private Shape hahmo;
+    double liike;  //TODO: tee setter metodi liikkelle
     public Esine(Shape monikulmio, int x, int y) {
         this.hahmo = monikulmio;
         this.hahmo.setTranslateX(x);
@@ -35,6 +35,9 @@ public class Esine {
     public double getY(){
         //shortcut for super.getHahmo.getTranslateY()
         return this.hahmo.getTranslateY();
+    }
+    public double getLiike(){
+        return this.liike;
     }
     public void asetaKuva(Image kuva){
         this.hahmo.setFill(new ImagePattern(kuva));

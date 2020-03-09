@@ -15,6 +15,6 @@ public class Este extends Esine{
         super.asetaKuva(image);
     }
     public void liiku(){
-        super.setX(super.getX() + super.liike);
+        super.setX(super.getX() + super.getLiike());
     }
 }

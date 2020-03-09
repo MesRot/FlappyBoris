@@ -22,9 +22,7 @@ public class Esteet {
     public void paivita(Pane ruutu){
         liikutaKaikkia();
         if(ekaUlosNaytosta()){
-            poistaEka();
-            lisaaUusi();
-            ruutu.getChildren().add(this.getEkaEste().getHahmo());
+            this.poistaEsteJaLisaaUusi(ruutu);
         }
     }
 
@@ -53,6 +51,12 @@ public class Esteet {
         for(Este e: esteet){
             e.liiku();
         }
+    }
+    public void poistaEsteJaLisaaUusi(Pane ruutu){
+        ruutu.getChildren().remove(this.getEkaEste().getHahmo());
+        poistaEka();
+        lisaaUusi();
+        ruutu.getChildren().add(this.getEkaEste().getHahmo());
     }
     public Este getEkaEste(){
         return esteet.get(0);
