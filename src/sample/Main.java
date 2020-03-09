@@ -84,12 +84,9 @@ public class Main extends Application {
                     }
                     try {
                         asetaPeliOhi(ruutu, pisteet, pistehallinta);
-                    } catch (SQLException e) {
+                    } catch (SQLException ignored) {
 
                     }
-
-
-                    //TODO: lisaa idle animaatiot kun pelaaja tormaa ja lisaa game over naytto
                 }
             }
         }.start();
@@ -105,6 +102,9 @@ public class Main extends Application {
 
     }
 
+    /**Ottaa parametrina pane olion ja lisää siihen taustan
+     * @param ruutu
+     */
     public void teeTausta(Pane ruutu){
         ArrayList<Image> taustat = new ArrayList<>();
         Image background1 = new Image("file:images/plx-1.png");
@@ -125,6 +125,14 @@ public class Main extends Application {
 
     }
 
+    /**Tekee peliohinäytön hahmon törmätessä esteeseen.
+     *
+     * mm. lisää tekstejä ja hakee Pisteet oliolta edelliset parhaat kolme pistettä
+     * @param ruutu
+     * @param pisteet
+     * @param pistehallinta
+     * @throws SQLException
+     */
     public void asetaPeliOhi(Pane ruutu, int pisteet, Pisteet pistehallinta) throws SQLException {
         Rectangle peitto = new Rectangle(0, 0, PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
         Text tamanpelinpisteet = new Text(200, 150, "Pisteet tästä pelikierroksesta: " + pisteet);

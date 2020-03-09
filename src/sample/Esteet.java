@@ -10,15 +10,26 @@ import javafx.scene.shape.Shape;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Pitää hallussaan erilaisista vihollisista ja listan esteistä
+ */
 public class Esteet {
     Image skeletonWalk = new Image("file:images/skeletonWalk.gif");
     Image snakeWalk = new Image("file:images/snakeWalk.gif");
     Image batWalk = new Image("file:images/batWalk.gif");
     private ArrayList<Este> esteet = new ArrayList<>();
 
+    /**
+     * Lisää ensimmäisen esteen esteisiin
+     */
     public Esteet(){
         this.lisaaUusi();
     }
+
+    /**Kutsuu metodia joka liikuttaa kaikkia olioita
+     * Jos ensimmäinen este on ruudusta ulkona, niin poistaa sen ja lisää uuden (Vaatii pane olion että voi lisätä)
+     * @param ruutu
+     */
     public void paivita(Pane ruutu){
         liikutaKaikkia();
         if(ekaUlosNaytosta()){
@@ -28,9 +39,18 @@ public class Esteet {
         }
     }
 
+    /**
+     * Poistaa ensimmäisen esteen listasta
+     */
     public void poistaEka(){
         esteet.remove(0);
     }
+
+    /**
+     * Lisää uuden vihollisen ruudulle
+     * Käytetään satunnaisuutta vihollisten valinnassa
+     * Erilaisia vihollistyyppejä on lueteltu VIHOLLISET Enum luokassa
+     */
     public void lisaaUusi(){
         Random rng = new Random();
         VIHOLLISET vihollinen = VIHOLLISET.values()[rng.nextInt(VIHOLLISET.values().length)];  //arpoo ENUM korkeuksista yhden
@@ -46,14 +66,27 @@ public class Esteet {
         }
 
     }
+
+    /**
+     * Jos ensimmäinen hahmo on pois ruudusta niin palauttaa True arvon
+     * @return boolean
+     */
     public boolean ekaUlosNaytosta(){
         return esteet.get(0).getX() < -200;
     }
+
+    /**
+     * Liikuttaa kaikkia hahmoja
+     */
     public void liikutaKaikkia(){
         for(Este e: esteet){
             e.liiku();
         }
     }
+
+    /**Palauttaa ensimmäisen esteen
+     * @return Este
+     */
     public Este getEkaEste(){
         return esteet.get(0);
     }
