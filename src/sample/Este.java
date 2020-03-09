@@ -1,12 +1,9 @@
 package sample;
 
 import javafx.scene.image.Image;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import sample.Esine;
 
-import java.util.Random;
+
 
 /**
  * Este luokka eli näytön oikeasta reunasta tulevat viholliset
@@ -23,6 +20,6 @@ public class Este extends Esine{
      * Liikuttaa hahmoa tietyn matkan eteenpäin
      */
     public void liiku(){
-        super.setX(super.getX() + super.liike);
+        super.setX(super.getX() + super.getLiike());
     }
 }

@@ -9,9 +9,11 @@ class Pisteet {
         this.luoTaulu();
     }
 
+
     /**Luo uuden tietokannan ja lisää sinne kolme 0 tulosta
      * @throws SQLException
      */
+
     public void luoTaulu() throws SQLException {
         try{
             Statement s = db.createStatement();
@@ -26,6 +28,7 @@ class Pisteet {
         }
     }
 
+
     /**Tallentaa pisteet tietokantaan
      * @param pisteet
      * @throws SQLException
@@ -35,6 +38,7 @@ class Pisteet {
         p.setString(1, Integer.toString(pisteet));
         p.execute();
     }
+
 
     /**Hakee parhaimmat kolme tulosta tietokannasta
      * @return ArrayList<Integer></Integer>

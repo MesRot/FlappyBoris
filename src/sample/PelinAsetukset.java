@@ -3,7 +3,7 @@ package sample;
 public class PelinAsetukset {
     public static final int RuudunLeveys = 600;
     public static final int RuudunKorkeus = 400;
-    public static double EsteenNopeus = -2.0;
+    public static double EsteenNopeus = -1.8;
     public static final double PainoVoima = 0.07;
     public static final double HyppyVoima = -4;
     public static final int MaanKorkeus = RuudunKorkeus - (RuudunKorkeus / 3);
@@ -12,8 +12,11 @@ public class PelinAsetukset {
                                                         //Parametrilla voidaan säätää hitdetectionin tarkkuuutta
 
 
-    public static void kasvataEsteNopeutta(){ //TODO: Esteen nopeus kasvaa liian nopeasti, sido se esim framecounttiin
-        EsteenNopeus -= 0.01;
+    public static final double EsteidenNopeudenKasvu = 0.001;
+
+
+    public static void kasvataEsteNopeutta(){ 
+        EsteenNopeus -= EsteidenNopeudenKasvu;
     }
 
     //Älä koske näihin

@@ -4,14 +4,16 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -37,9 +39,11 @@ public class Main extends Application {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         Pane ruutu = new Pane();
         ruutu.setPrefSize(PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
+
         Boris bobo = new Boris();
         Esteet esteet = new Esteet();
         teeTausta(ruutu);
+
 
         ruutu.getChildren().add(new Rectangle(0, PelinAsetukset.MaanKorkeus+PelinAsetukset.BorisKorkeus, PelinAsetukset.RuudunLeveys, PelinAsetukset.MaanKorkeus));
         ruutu.getChildren().addAll(esteet.getEkaEste().getHahmo(), bobo.getHahmo());
@@ -58,7 +62,7 @@ public class Main extends Application {
         new AnimationTimer() {
             int pisteet = 0;
             @Override
-            public void handle(long nykyhetki) {//Todo: korjaa score teksti animaatio
+            public void handle(long nykyhetki) {
                 mediaPlayer.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
@@ -77,6 +81,7 @@ public class Main extends Application {
                 bobo.tarkistaTormays(esteet.getEkaEste());
                 if(bobo.tormannyt){
                     this.stop();
+            
                     try {
                         pistehallinta.tallenna(pisteet);
                     } catch (SQLException e) {
@@ -87,6 +92,9 @@ public class Main extends Application {
                     } catch (SQLException ignored) {
 
                     }
+
+
+
                 }
             }
         }.start();
@@ -122,8 +130,8 @@ public class Main extends Application {
             tausta.setFill(new ImagePattern(i));
             ruutu.getChildren().add(tausta);
         }
-
     }
+
 
     /**Tekee peliohinäytön hahmon törmätessä esteeseen.
      *
@@ -133,6 +141,7 @@ public class Main extends Application {
      * @param pistehallinta
      * @throws SQLException
      */
+
     public void asetaPeliOhi(Pane ruutu, int pisteet, Pisteet pistehallinta) throws SQLException {
         Rectangle peitto = new Rectangle(0, 0, PelinAsetukset.RuudunLeveys, PelinAsetukset.RuudunKorkeus);
         Text tamanpelinpisteet = new Text(200, 150, "Pisteet tästä pelikierroksesta: " + pisteet);
@@ -150,10 +159,12 @@ public class Main extends Application {
             }
         }
         catch (Exception e){
+
             System.out.println("Ei tarpeeksi pisteitä järjestelmässä");
         }
 
     }
+
 
 
     public static void main(String[] args) {

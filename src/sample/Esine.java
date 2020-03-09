@@ -1,9 +1,8 @@
 package sample;
 
-import javafx.geometry.Point2D;
+
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 /**
@@ -12,7 +11,7 @@ import javafx.scene.shape.Shape;
  * Omistaa paikan, hahmon muodon ja liikkeen
  */
 public class Esine {
-    Shape hahmo;
+    private Shape hahmo;
     double liike;
     public Esine(Shape monikulmio, int x, int y) {
         this.hahmo = monikulmio;
@@ -46,7 +45,11 @@ public class Esine {
         return this.hahmo.getTranslateY();
     }
 
-    /**
+    
+    public double getLiike(){
+        return this.liike;
+    }
+     /**
      * @param kuva
      * Asettaa hahmon kuvaksi parametrina saadu kuvan
      */
